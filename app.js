@@ -8,15 +8,12 @@ if (Meteor.isClient) {
     });
 
     Template.input.events({
-        'keydown textarea': function(e, t) {
-            Session.set('text', t.$('[name=textarea]').val());
+        'keyup .textarea': function(e, t) {
+            //Session.set('text', t.$('[name=textarea]').val());
+            //console.log(t.$('[name=textarea]'));
             var $textarea = $(e.target).find('[name=textarea]');
-            if ($textarea.context.scrollHeight > $textarea.context.clientHeight) {
-                t.$('[name=textarea]').height($textarea.context.scrollHeight);
-            }
-            if (e.keyCode == 8) {
-                console.log('!!');
-            }
+            console.log($textarea);
+            Session.set('text', $textarea.context.innerText);
         },
     });
 
